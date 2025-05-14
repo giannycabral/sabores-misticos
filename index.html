@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sabores Místicos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img id="header-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="Restaurante Mystic Bites">
+    <h1>Sabores Místicos</h1>
+    <nav>
+      <a href="#menu">Cardápio</a>
+      <a href="#order-form">Formulário de Pedido</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="menu">
+      <h2>Cardápio</h2>
+
+      <article>
+        <img src="https://images.unsplash.com/photo-1661529515567-dcb300f41da5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hambúrguer Dragonfire">
+        <h3>Hambúrguer Dragonfire</h3>
+        <p>Carne grelhada com molho picante de dragão, alface e queijo. <em>R$ 42,00</em></p>
+      </article>
+
+      <article>
+        <img src="https://plus.unsplash.com/premium_photo-1690561082029-0eb2ed65a09f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Salada da Floresta Élfa">
+        <h3>Salada da Floresta Élfa</h3>
+        <p>Verduras frescas com ervas mágicas e vinagrete encantado. <em>R$ 33,00</em></p>
+      </article>
+
+      <article>
+        <img src="https://images.unsplash.com/photo-1497515114629-f71d768fd07c?q=80&w=2084&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D alt="Poção do Mago">
+        <h3>Poção do Mago</h3>
+        <p>Café forte com especiarias secretas. Quente ou gelado. <em>R$ 18,00</em></p>
+      </article>
+    </section>
+
+    <section id="order-form">
+      <h2>Faça Seu Pedido</h2>
+      <form id="orderForm">
+        <label for="burger-qty">Hambúrguer Dragonfire (Qtd):</label>
+        <input type="number" id="burger-qty" name="burger-qty" min="0">
+
+        <label for="salad-qty">Salada da Floresta Élfa (Qtd):</label>
+        <input type="number" id="salad-qty" name="salad-qty" min="0">
+
+        <label for="brew-qty">Poção do Mago (Qtd):</label>
+        <input type="number" id="brew-qty" name="brew-qty" min="0">
+
+        <p><strong>Escolha Acompanhamentos:</strong></p>
+        <label><input type="checkbox" name="sides" value="fries"> Batatas Místicas</label>
+        <label><input type="checkbox" name="sides" value="bread"> Pão Encantado</label>
+
+        <p><strong>Bebida:</strong></p>
+        <label><input type="radio" name="drink" value="agua" required> Água</label>
+        <label><input type="radio" name="drink" value="pocao" required> Poção Borbulhante</label>
+
+        <label for="requests">Pedidos Especiais:</label>
+        <textarea id="requests" name="requests" rows="4" placeholder="Alguma preferência ou alergia..."></textarea>
+
+        <input type="submit" value="Finalizar Pedido">
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>Feito com amor por <strong>GiannyCabral</strong></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
