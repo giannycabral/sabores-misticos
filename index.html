@@ -4,73 +4,397 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sabores Místicos</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <img id="header-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="Restaurante Mystic Bites">
-    <h1>Sabores Místicos</h1>
+    <div class="stars-container">
+      <div class="stars"></div>
+      <div class="twinkling"></div>
+    </div>
+    <div class="header-content">
+      <img id="header-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="Restaurante Mystic Bites">
+      <div class="header-overlay"></div>
+      <div class="logo-container">
+        <div class="magic-circle">
+          <div class="magic-symbol"></div>
+        </div>
+        <h1>Sabores Místicos</h1>
+        <p class="tagline">Uma jornada gastronômica através dos reinos encantados</p>
+      </div>
+    </div>
     <nav>
-      <a href="#menu">Cardápio</a>
-      <a href="#order-form">Formulário de Pedido</a>
+      <a href="#menu"><i class="fas fa-book-open"></i> Cardápio</a>
+      <a href="#order-form"><i class="fas fa-hat-wizard"></i> Faça seu Pedido</a>
+      <a href="#sobre"><i class="fas fa-magic"></i> Nossa Magia</a>
     </nav>
   </header>
 
   <main>
     <section id="menu">
       <h2>Cardápio</h2>
+      
+      <div class="menu-filter">
+        <div class="search-container">
+          <div class="search-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <input type="text" id="menu-search" placeholder="Revele os segredos do cardápio...">
+          <div class="search-effect"></div>
+        </div>
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all"><i class="fas fa-moon"></i> Todos os Reinos</button>
+          <button class="filter-btn" data-filter="principais"><i class="fas fa-fire"></i> Caldeirão Principal</button>
+          <button class="filter-btn" data-filter="entradas"><i class="fas fa-leaf"></i> Preparações Iniciais</button>
+          <button class="filter-btn" data-filter="bebidas"><i class="fas fa-flask"></i> Poções</button>
+          <button class="filter-btn" data-filter="sobremesas"><i class="fas fa-star"></i> Doces Encantados</button>
+        </div>
+      </div>
+      
+      <h3 class="category-title">Pratos Principais</h3>
+      <div class="menu-category" id="principais">
+        <article class="menu-item">
+          <img src="https://images.unsplash.com/photo-1661529515567-dcb300f41da5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hambúrguer Dragonfire">
+          <div class="item-content">
+            <div class="item-header">
+              <h3>Hambúrguer Dragonfire</h3>
+              <div class="item-tags">
+                <span class="tag tag-spicy">Picante</span>
+                <span class="tag tag-popular">Popular</span>
+              </div>
+            </div>
+            <p class="item-description">Suculento hambúrguer de carne bovina grelhada com molho picante de dragão, alface crocante, tomate, cebola caramelizada e nosso queijo especial derretido. Acompanha batatas místicas.</p>
+            <p class="item-price">R$ 42,00</p>
+            <button class="add-to-order" data-id="burger" data-price="42">Adicionar ao Pedido</button>
+          </div>
+        </article>
+        
+        <article class="menu-item">
+          <img src="https://mandareceitas.com.br/wp-content/uploads/2023/12/Variacoes-de-File-Mignon-ao-Molho-de-Vinho-Tinto-1024x585.jpg" alt="Filé do Alquimista">
+          <div class="item-content">
+            <div class="item-header">
+              <h3>Filé do Alquimista</h3>
+              <div class="item-tags">
+                <span class="tag tag-chef">Especial do Chef</span>
+              </div>
+            </div>
+            <p class="item-description">Filé mignon perfeitamente grelhado, banhado em molho de vinho tinto com ervas mágicas, acompanhado de batatas rústicas e legumes grelhados da estação.</p>
+            <p class="item-price">R$ 68,00</p>
+            <button class="add-to-order" data-id="filet" data-price="68">Adicionar ao Pedido</button>
+          </div>
+        </article>
+        
+        <article class="menu-item">
+          <img src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pizza Elemental">
+          <div class="item-content">
+            <div class="item-header">
+              <h3>Pizza Elemental</h3>
+              <div class="item-tags">
+                <span class="tag tag-veggie">Opção Vegetariana</span>
+              </div>
+            </div>
+            <p class="item-description">Pizza artesanal com massa fina e crocante, molho de tomate caseiro, queijo mozzarella, manjericão fresco e cogumelos mágicos da floresta (não alucinógenos!).</p>
+            <p class="item-price">R$ 55,00</p>
+            <button class="add-to-order" data-id="pizza" data-price="55">Adicionar ao Pedido</button>
+          </div>
+        </article>
+      </div>
+      
+      <h3 class="category-title">Entradas</h3>
+      <div class="menu-category" id="entradas">
+        <article class="menu-item">
+          <img src="https://plus.unsplash.com/premium_photo-1690561082029-0eb2ed65a09f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Salada da Floresta Élfa">
+          <div class="item-content">
+            <div class="item-header">
+              <h3>Salada da Floresta Élfa</h3>
+              <div class="item-tags">
+                <span class="tag tag-veggie">Vegetariano</span>
+                <span class="tag tag-vegan">Vegano</span>
+              </div>
+            </div>
+            <p class="item-description">Mix de folhas frescas colhidas ao amanhecer, com ervas mágicas aromáticas, nozes caramelizadas, frutas da estação e vinagrete especial encantado com toque cítrico.</p>
+            <p class="item-price">R$ 33,00</p>
+            <button class="add-to-order" data-id="salad" data-price="33">Adicionar ao Pedido</button>
+          </div>
+        </article>
+        
+        <article class="menu-item">
+          <img src="https://www.fruttetogeleias.com.br/media/IMG_4836.jpg" alt="Tábua de Queijos Encantados">
+          <div class="item-content">
+            <div class="item-header">
+              <h3>Tábua de Queijos Encantados</h3>
+              <div class="item-tags">
+                <span class="tag tag-veggie">Vegetariano</span>
+                <span class="tag tag-sharing">Para Compartilhar</span>
+              </div>
+            </div>
+            <p class="item-description">Seleção de queijos especiais do reino, acompanhados de geleias caseiras, frutas secas, mel de flores silvestres e pão artesanal.</p>
+            <p class="item-price">R$ 49,00</p>
+            <button class="add-to-order" data-id="cheese" data-price="49">Adicionar ao Pedido</button>
+          </div>
+        </article>
+      </div>
+      
+      <h3 class="category-title">Bebidas</h3>
+      <div class="menu-category" id="bebidas">
+        <article class="menu-item">
+          <img src="https://images.unsplash.com/photo-1497515114629-f71d768fd07c?q=80&w=2084&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Poção do Mago">
+          <div class="item-content">
+            <div class="item-header">
+              <h3>Poção do Mago</h3>
+              <div class="item-tags">
+                <span class="tag tag-hot">Quente/Gelado</span>
+              </div>
+            </div>
+            <p class="item-description">Café premium forte preparado com grãos selecionados, infusionado com especiarias secretas (canela, cardamomo e um toque de baunilha). Servido quente ou gelado conforme sua preferência.</p>
+            <p class="item-price">R$ 18,00</p>
+            <button class="add-to-order" data-id="potion" data-price="18">Adicionar ao Pedido</button>
+          </div>
+        </article>
+        
+        <article class="menu-item">
+          <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?q=80&w=1972&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Elixir de Frutas">
+          <div class="item-content">
+            <div class="item-header">
+              <h3>Elixir de Frutas</h3>
+              <div class="item-tags">
+                <span class="tag tag-vegan">Vegano</span>
+                <span class="tag tag-healthy">Saudável</span>
+              </div>
+            </div>
+            <p class="item-description">Suco natural feito com frutas frescas da estação, adoçado com mel ou açúcar de beterraba. Peça as opções disponíveis do dia.</p>
+            <p class="item-price">R$ 15,00</p>
+            <button class="add-to-order" data-id="juice" data-price="15">Adicionar ao Pedido</button>
+          </div>
+        </article>
+      </div>
+      
+      <h3 class="category-title">Sobremesas</h3>
+      <div class="menu-category" id="sobremesas">
+        <article class="menu-item">
+          <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=1864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bolo de Chocolate Místico">
+          <div class="item-content">
+            <div class="item-header">
+              <h3>Bolo de Chocolate Místico</h3>
+              <div class="item-tags">
+                <span class="tag tag-popular">Popular</span>
+              </div>
+            </div>
+            <p class="item-description">Bolo de chocolate macio com camadas de ganache, calda quente de chocolate e sorvete de baunilha. Um encantamento para os amantes de chocolate!</p>
+            <p class="item-price">R$ 28,00</p>
+            <button class="add-to-order" data-id="cake" data-price="28">Adicionar ao Pedido</button>
+          </div>
+        </article>
+        
+        <article class="menu-item">
+          <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tartelette de Frutas Encantadas">
+          <div class="item-content">
+            <div class="item-header">
+              <h3>Tartelette de Frutas Encantadas</h3>
+              <div class="item-tags">
+                <span class="tag tag-seasonal">Sazonal</span>
+              </div>
+            </div>
+            <p class="item-description">Delicada massa de torta artesanal com creme de baunilha e frutas frescas da estação, finalizadas com brilho mágico comestível.</p>
+            <p class="item-price">R$ 24,00</p>
+            <button class="add-to-order" data-id="tart" data-price="24">Adicionar ao Pedido</button>
+          </div>
+        </article>
+      </div>
+    </section>
 
-      <article>
-        <img src="https://images.unsplash.com/photo-1661529515567-dcb300f41da5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hambúrguer Dragonfire">
-        <h3>Hambúrguer Dragonfire</h3>
-        <p>Carne grelhada com molho picante de dragão, alface e queijo. <em>R$ 42,00</em></p>
-      </article>
-
-      <article>
-        <img src="https://plus.unsplash.com/premium_photo-1690561082029-0eb2ed65a09f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Salada da Floresta Élfa">
-        <h3>Salada da Floresta Élfa</h3>
-        <p>Verduras frescas com ervas mágicas e vinagrete encantado. <em>R$ 33,00</em></p>
-      </article>
-
-      <article>
-        <img src="https://images.unsplash.com/photo-1497515114629-f71d768fd07c?q=80&w=2084&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D alt="Poção do Mago">
-        <h3>Poção do Mago</h3>
-        <p>Café forte com especiarias secretas. Quente ou gelado. <em>R$ 18,00</em></p>
-      </article>
+    <section id="sobre" class="magic-section">
+      <div class="section-divider">
+        <div class="divider-symbol"></div>
+      </div>
+      <h2>Nossa Magia</h2>
+      <div class="magic-content">
+        <div class="magic-card">
+          <div class="magic-icon">
+            <i class="fas fa-mortar-pestle"></i>
+          </div>
+          <h3>Ingredientes Encantados</h3>
+          <p>Cada prato é preparado com ingredientes selecionados de reinos mágicos, colhidos sob a luz da lua cheia para preservar suas propriedades místicas.</p>
+        </div>
+        <div class="magic-card">
+          <div class="magic-icon">
+            <i class="fas fa-wand-magic-sparkles"></i>
+          </div>
+          <h3>Receitas Ancestrais</h3>
+          <p>Nossos chefs são mestres na antiga arte da gastronomia mística, preservando receitas que foram passadas através de gerações de magos culinários.</p>
+        </div>
+        <div class="magic-card">
+          <div class="magic-icon">
+            <i class="fas fa-hands"></i>
+          </div>
+          <h3>Experiência Sensorial</h3>
+          <p>Cada prato foi meticulosamente elaborado para despertar sentidos que você nem sabia que possuía, proporcionando uma jornada gastronômica inesquecível.</p>
+        </div>
+      </div>
+      <div class="magic-quote">
+        <blockquote>"A verdadeira magia não está apenas nos ingredientes, mas na paixão com que preparamos cada refeição."</blockquote>
+        <cite>— Arquimago Gastronômico, Chef Principal</cite>
+      </div>
     </section>
 
     <section id="order-form">
+      <div class="section-divider">
+        <div class="divider-symbol"></div>
+      </div>
       <h2>Faça Seu Pedido</h2>
+      
+      <div class="cart-container">
+        <div class="cart-header">
+          <div class="cart-icon">
+            <i class="fas fa-cauldron"></i>
+            <i class="fas fa-shopping-basket"></i>
+          </div>
+          <h3>Seu Grimório de Pedidos</h3>
+        </div>
+        <div class="cart-summary">
+          <ul id="order-items">
+            <!-- Items serão adicionados via JavaScript -->
+            <li class="empty-cart">Seu grimório de pedidos está vazio</li>
+          </ul>
+          <div class="cart-total">
+            <p>Total: <span id="cart-total-price">R$ 0,00</span></p>
+            <div class="magic-sparkles"></div>
+          </div>
+        </div>
+      </div>
+      
       <form id="orderForm">
-        <label for="burger-qty">Hambúrguer Dragonfire (Qtd):</label>
-        <input type="number" id="burger-qty" name="burger-qty" min="0">
-
-        <label for="salad-qty">Salada da Floresta Élfa (Qtd):</label>
-        <input type="number" id="salad-qty" name="salad-qty" min="0">
-
-        <label for="brew-qty">Poção do Mago (Qtd):</label>
-        <input type="number" id="brew-qty" name="brew-qty" min="0">
-
-        <p><strong>Escolha Acompanhamentos:</strong></p>
-        <label><input type="checkbox" name="sides" value="fries"> Batatas Místicas</label>
-        <label><input type="checkbox" name="sides" value="bread"> Pão Encantado</label>
-
-        <p><strong>Bebida:</strong></p>
-        <label><input type="radio" name="drink" value="agua" required> Água</label>
-        <label><input type="radio" name="drink" value="pocao" required> Poção Borbulhante</label>
-
-        <label for="requests">Pedidos Especiais:</label>
-        <textarea id="requests" name="requests" rows="4" placeholder="Alguma preferência ou alergia..."></textarea>
-
-        <input type="submit" value="Finalizar Pedido">
+        <div class="form-columns">
+          <div class="form-column delivery-column">
+            <h3>Informações para Entrega</h3>
+            <div class="form-field">
+              <label for="customer-name"><i class="fas fa-user-wizard"></i> Nome:</label>
+              <input type="text" id="customer-name" name="customer-name" required>
+            </div>
+            
+            <div class="form-field">
+              <label for="customer-phone"><i class="fas fa-crystal-ball"></i> Telefone:</label>
+              <input type="tel" id="customer-phone" name="customer-phone" required>
+            </div>
+            
+            <div class="form-field">
+              <label for="delivery-address"><i class="fas fa-map-marked-alt"></i> Endereço de Entrega:</label>
+              <textarea id="delivery-address" name="delivery-address" rows="3" required></textarea>
+            </div>
+            
+            <div class="form-field delivery-method">
+              <label for="delivery-method"><i class="fas fa-dragon"></i> Método de Entrega:</label>
+              <select id="delivery-method" name="delivery-method">
+                <option value="delivery">Entrega por Dragão Mensageiro (+ R$ 10,00)</option>
+                <option value="pickup">Retirada na Torre Mística</option>
+              </select>
+              <div class="delivery-icon"></div>
+            </div>
+          </div>
+          
+          <div class="form-column options-column">
+            <h3>Opções Adicionais</h3>
+            <div class="option-section">
+              <p class="option-title"><i class="fas fa-utensils"></i> <strong>Escolha Acompanhamentos:</strong></p>
+              <div class="option-items">
+                <label class="option-item"><input type="checkbox" name="sides" value="fries"> Batatas Místicas <span class="option-price">(+R$ 12,00)</span></label>
+                <label class="option-item"><input type="checkbox" name="sides" value="bread"> Pão Encantado <span class="option-price">(+R$ 8,00)</span></label>
+                <label class="option-item"><input type="checkbox" name="sides" value="salad"> Mini Salada <span class="option-price">(+R$ 15,00)</span></label>
+              </div>
+            </div>
+            
+            <div class="option-section">
+              <p class="option-title"><i class="fas fa-glass-cheers"></i> <strong>Bebidas Extras:</strong></p>
+              <div class="option-items">
+                <label class="option-item"><input type="checkbox" name="drinks" value="agua"> Água Mineral <span class="option-price">(+R$ 5,00)</span></label>
+                <label class="option-item"><input type="checkbox" name="drinks" value="pocao"> Poção Borbulhante <span class="option-price">(+R$ 8,00)</span></label>
+                <label class="option-item"><input type="checkbox" name="drinks" value="vinho"> Taça de Vinho Élfico <span class="option-price">(+R$ 22,00)</span></label>
+              </div>
+            </div>
+            
+            <div class="option-section">
+              <label for="requests" class="option-title"><i class="fas fa-scroll"></i> <strong>Observações ou Pedidos Especiais:</strong></label>
+              <textarea id="requests" name="requests" rows="4" placeholder="Alguma preferência ou alergia? Informações adicionais para o pedido..."></textarea>
+            </div>
+          </div>
+        </div>
+        
+        <div class="payment-options">
+          <h3>Método de Pagamento <i class="fas fa-coins"></i></h3>
+          <label class="payment-option"><input type="radio" name="payment" value="credit" required>
+            <span class="payment-icon"><i class="fas fa-credit-card"></i></span>
+            <span class="payment-text">Cartão de Crédito</span>
+          </label>
+          <label class="payment-option"><input type="radio" name="payment" value="debit" required>
+            <span class="payment-icon"><i class="fas fa-money-check"></i></span>
+            <span class="payment-text">Cartão de Débito</span>
+          </label>
+          <label class="payment-option"><input type="radio" name="payment" value="pix" required>
+            <span class="payment-icon"><i class="fas fa-bolt"></i></span>
+            <span class="payment-text">PIX</span>
+          </label>
+          <label class="payment-option"><input type="radio" name="payment" value="cash" required>
+            <span class="payment-icon"><i class="fas fa-coins"></i></span>
+            <span class="payment-text">Moedas Mágicas (Dinheiro)</span>
+          </label>
+        </div>
+        
+        <div class="coupon-code">
+          <label for="coupon">Pergaminho de Desconto <i class="fas fa-scroll"></i></label>
+          <div class="coupon-input">
+            <input type="text" id="coupon" name="coupon" placeholder="Insira o código do pergaminho mágico...">
+            <button type="button" id="apply-coupon">
+              <span class="button-text">Ativar</span>
+              <span class="button-icon"><i class="fas fa-sparkles"></i></span>
+            </button>
+          </div>
+        </div>
+        
+        <button type="submit" class="submit-button">
+          <span class="submit-text">Finalizar Pedido</span>
+          <span class="submit-icon">
+            <i class="fas fa-wand-magic"></i>
+          </span>
+        </button>
       </form>
     </section>
   </main>
 
   <footer>
-    <p>Feito com amor por <strong>GiannyCabral</strong></p>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <div class="mini-magic-circle"></div>
+        <h3>Sabores Místicos</h3>
+      </div>
+      <div class="footer-info">
+        <div class="footer-section">
+          <h4><i class="fas fa-map-marker-alt"></i> Localização</h4>
+          <p>Rua dos Magos, 42 - Reino Encantado</p>
+          <p>Aberto das 11h às 23h</p>
+        </div>
+        <div class="footer-section">
+          <h4><i class="fas fa-phone-alt"></i> Contato</h4>
+          <p>Tel: (00) 9999-8888</p>
+          <p>contato@saboresmisticos.com</p>
+        </div>
+        <div class="footer-section">
+          <h4><i class="fas fa-star"></i> Redes Mágicas</h4>
+          <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Feito com <i class="fas fa-heart"></i> e magia por <strong>GiannyCabral</strong></p>
+        <p class="copyright">© 2025 Sabores Místicos - Todos os encantamentos reservados</p>
+      </div>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
