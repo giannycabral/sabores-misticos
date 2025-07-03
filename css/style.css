@@ -63,6 +63,7 @@ p, li, label, input, textarea, button {
   right: 0;
   bottom: 0;
   overflow: hidden;
+  z-index: 0;
 }
 
 .stars, .twinkling {
@@ -83,10 +84,10 @@ p, li, label, input, textarea, button {
 }
 
 .twinkling {
-  background: transparent url('https://i.imgur.com/2BFhLMj.png') repeat top center;
-  z-index: 1;
+  background: transparent url('https://i.imgur.com/YKY28eT.png') repeat top center;
+  z-index: 0;
   animation: move-twink-back 200s linear infinite;
-  opacity: 0.3;
+  opacity: 0.15;
 }
 
 /* Header Styles */
@@ -109,6 +110,8 @@ header {
   object-fit: cover;
   filter: brightness(0.7);
   transition: transform 0.8s ease;
+  position: relative;
+  z-index: 1;
 }
 
 header:hover #header-img {
@@ -123,6 +126,7 @@ header:hover #header-img {
   bottom: 0;
   background: linear-gradient(to bottom, rgba(44,27,71,0.5), rgba(44,27,71,0.8));
   z-index: 2;
+  pointer-events: none;
 }
 
 .logo-container {
@@ -794,6 +798,8 @@ section h2::after {
   background: var(--magic-gradient);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, 
                 linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0.5;
