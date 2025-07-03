@@ -963,6 +963,44 @@ section h2::after {
   font-size: 1.1rem;
 }
 
+.cart-section-title {
+  padding: 8px 0 !important;
+  font-weight: 600;
+  color: var(--primary-color);
+  background-color: rgba(93, 62, 140, 0.05);
+  border-bottom: 2px solid var(--accent-color) !important;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cart-section-title span {
+  position: relative;
+  padding-left: 18px;
+}
+
+.cart-section-title span::before {
+  content: '✧';
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+}
+
+.additional-item {
+  background-color: rgba(198, 155, 109, 0.03);
+  padding: 8px 0 8px 15px !important;
+  font-size: 0.95rem;
+}
+
+.cart-delivery-fee {
+  margin-top: 10px;
+  padding: 10px 0 !important;
+  border-top: 2px dashed rgba(93, 62, 140, 0.2) !important;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
 .cart-total {
   text-align: right;
   font-weight: bold;
@@ -971,6 +1009,16 @@ section h2::after {
   padding: 15px 0;
   border-top: 2px solid rgba(198, 155, 109, 0.3);
   position: relative;
+}
+
+@keyframes priceUpdate {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); color: var(--accent-color); }
+  100% { transform: scale(1); }
+}
+
+.price-update {
+  animation: priceUpdate 0.6s ease;
 }
 
 .magic-sparkles {

@@ -1,4 +1,26 @@
-// Inicialização das variáveis globais
+// Inicialização das var  // Adicionar listeners para o botão de aplicar cupom
+  const couponButton = document.getElementById('apply-coupon');
+  if (couponButton) {
+    couponButton.addEventListener('click', applyCoupon);
+  }
+
+  // Adicionar listener para o método de entrega
+  const deliveryMethodSelect = document.getElementById('delivery-method');
+  if (deliveryMethodSelect) {
+    deliveryMethodSelect.addEventListener('change', updateTotal);
+  }
+  
+  // Adicionar listeners para os checkboxes de acompanhamentos e bebidas
+  const additionalItems = document.querySelectorAll('input[name="sides"], input[name="drinks"]');
+  additionalItems.forEach(item => {
+    item.addEventListener('change', function() {
+      updateTotal();
+      updateCartDisplay();
+    });
+  });
+
+  // Inicializar formulário
+  document.getElementById('orderForm').addEventListener('submit', submitOrder);
 const cart = [];
 let cartTotal = 0;
 let discountApplied = false;
@@ -130,33 +152,137 @@ function updateCartDisplay() {
   const orderItemsList = document.getElementById('order-items');
   orderItemsList.innerHTML = '';
   
-  if (cart.length === 0) {
-    orderItemsList.innerHTML = '<li class="empty-cart">Seu carrinho está vazio</li>';
+  // Verificar se há itens no carrinho
+  if (cart.length === 0 && 
+      !document.querySelector('input[name="sides"]:checked') && 
+      !document.querySelector('input[name="drinks"]:checked')) {
+    orderItemsList.innerHTML = '<li class="empty-cart">Seu grimório de pedidos está vazio</li>';
     cartTotal = 0;
   } else {
+    // Adicionar itens do menu ao carrinho
     cartTotal = 0;
-    cart.forEach(item => {
-      const itemTotal = item.price * item.quantity;
-      cartTotal += itemTotal;
+    if (cart.length > 0) {
+      // Criar um título para os pratos principais
+      const mainItemsTitle = document.createElement('li');
+      mainItemsTitle.className = 'cart-section-title';
+      mainItemsTitle.innerHTML = '<span>Pratos</span>';
+      orderItemsList.appendChild(mainItemsTitle);
       
-      const listItem = document.createElement('li');
-      listItem.innerHTML = `
+      cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        cartTotal += itemTotal;
+        
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+          <div>
+            <span>${item.quantity}x ${item.name}</span>
+          </div>
+          <div>
+            <span>R$ ${itemTotal.toFixed(2)}</span>
+            <button class="remove-item" data-id="${item.id}">×</button>
+          </div>
+        `;
+        orderItemsList.appendChild(listItem);
+      });
+      
+      // Adicionar listeners para os botões de remover
+      const removeButtons = document.querySelectorAll('.remove-item');
+      removeButtons.forEach(button => {
+        button.addEventListener('click', removeFromCart);
+      });
+    }
+    
+    // Adicionar acompanhamentos selecionados ao carrinho
+    const sides = document.querySelectorAll('input[name="sides"]:checked');
+    if (sides.length > 0) {
+      // Criar um título para os acompanhamentos
+      const sidesTitle = document.createElement('li');
+      sidesTitle.className = 'cart-section-title';
+      sidesTitle.innerHTML = '<span>Acompanhamentos</span>';
+      orderItemsList.appendChild(sidesTitle);
+      
+      sides.forEach(side => {
+        let sideName = '';
+        let sidePrice = 0;
+        
+        if (side.value === 'fries') {
+          sideName = 'Batatas Místicas';
+          sidePrice = 12;
+        } else if (side.value === 'bread') {
+          sideName = 'Pão Encantado';
+          sidePrice = 8;
+        } else if (side.value === 'salad') {
+          sideName = 'Mini Salada';
+          sidePrice = 15;
+        }
+        
+        const listItem = document.createElement('li');
+        listItem.className = 'additional-item';
+        listItem.innerHTML = `
+          <div>
+            <span>1x ${sideName}</span>
+          </div>
+          <div>
+            <span>R$ ${sidePrice.toFixed(2)}</span>
+          </div>
+        `;
+        orderItemsList.appendChild(listItem);
+      });
+    }
+    
+    // Adicionar bebidas extras selecionadas ao carrinho
+    const drinks = document.querySelectorAll('input[name="drinks"]:checked');
+    if (drinks.length > 0) {
+      // Criar um título para as bebidas
+      const drinksTitle = document.createElement('li');
+      drinksTitle.className = 'cart-section-title';
+      drinksTitle.innerHTML = '<span>Bebidas Extras</span>';
+      orderItemsList.appendChild(drinksTitle);
+      
+      drinks.forEach(drink => {
+        let drinkName = '';
+        let drinkPrice = 0;
+        
+        if (drink.value === 'agua') {
+          drinkName = 'Água Mineral';
+          drinkPrice = 5;
+        } else if (drink.value === 'pocao') {
+          drinkName = 'Poção Borbulhante';
+          drinkPrice = 8;
+        } else if (drink.value === 'vinho') {
+          drinkName = 'Taça de Vinho Élfico';
+          drinkPrice = 22;
+        }
+        
+        const listItem = document.createElement('li');
+        listItem.className = 'additional-item';
+        listItem.innerHTML = `
+          <div>
+            <span>1x ${drinkName}</span>
+          </div>
+          <div>
+            <span>R$ ${drinkPrice.toFixed(2)}</span>
+          </div>
+        `;
+        orderItemsList.appendChild(listItem);
+      });
+    }
+    
+    // Adicionar taxa de entrega se aplicável
+    const deliveryMethod = document.getElementById('delivery-method');
+    if (deliveryMethod && deliveryMethod.value === 'delivery') {
+      const deliveryItem = document.createElement('li');
+      deliveryItem.className = 'cart-delivery-fee';
+      deliveryItem.innerHTML = `
         <div>
-          <span>${item.quantity}x ${item.name}</span>
+          <span>Taxa de Entrega</span>
         </div>
         <div>
-          <span>R$ ${itemTotal.toFixed(2)}</span>
-          <button class="remove-item" data-id="${item.id}">×</button>
+          <span>R$ 10,00</span>
         </div>
       `;
-      orderItemsList.appendChild(listItem);
-    });
-    
-    // Adicionar listeners para os botões de remover
-    const removeButtons = document.querySelectorAll('.remove-item');
-    removeButtons.forEach(button => {
-      button.addEventListener('click', removeFromCart);
-    });
+      orderItemsList.appendChild(deliveryItem);
+    }
   }
   
   updateTotal();
@@ -212,7 +338,16 @@ function updateTotal() {
   }
   
   // Atualizar exibição do total
-  document.getElementById('cart-total-price').textContent = `R$ ${total.toFixed(2)}`;
+  const totalElement = document.getElementById('cart-total-price');
+  if (totalElement) {
+    totalElement.textContent = `R$ ${total.toFixed(2)}`;
+    
+    // Adicionar classe de animação para destacar a alteração
+    totalElement.classList.add('price-update');
+    setTimeout(() => {
+      totalElement.classList.remove('price-update');
+    }, 600);
+  }
   
   return total;
 }
@@ -339,6 +474,63 @@ function submitOrder(event) {
   cart.forEach(item => {
     orderSummary += `- ${item.quantity}x ${item.name}: R$ ${(item.price * item.quantity).toFixed(2)}\n`;
   });
+  
+  // Adicionar acompanhamentos selecionados ao resumo
+  const sides = document.querySelectorAll('input[name="sides"]:checked');
+  if (sides.length > 0) {
+    orderSummary += `\nAcompanhamentos:\n`;
+    sides.forEach(side => {
+      let sideName = '';
+      let sidePrice = 0;
+      
+      if (side.value === 'fries') {
+        sideName = 'Batatas Místicas';
+        sidePrice = 12;
+      } else if (side.value === 'bread') {
+        sideName = 'Pão Encantado';
+        sidePrice = 8;
+      } else if (side.value === 'salad') {
+        sideName = 'Mini Salada';
+        sidePrice = 15;
+      }
+      
+      orderSummary += `- ${sideName}: R$ ${sidePrice.toFixed(2)}\n`;
+    });
+  }
+  
+  // Adicionar bebidas extras selecionadas ao resumo
+  const drinks = document.querySelectorAll('input[name="drinks"]:checked');
+  if (drinks.length > 0) {
+    orderSummary += `\nBebidas Extras:\n`;
+    drinks.forEach(drink => {
+      let drinkName = '';
+      let drinkPrice = 0;
+      
+      if (drink.value === 'agua') {
+        drinkName = 'Água Mineral';
+        drinkPrice = 5;
+      } else if (drink.value === 'pocao') {
+        drinkName = 'Poção Borbulhante';
+        drinkPrice = 8;
+      } else if (drink.value === 'vinho') {
+        drinkName = 'Taça de Vinho Élfico';
+        drinkPrice = 22;
+      }
+      
+      orderSummary += `- ${drinkName}: R$ ${drinkPrice.toFixed(2)}\n`;
+    });
+  }
+  
+  // Adicionar observações do cliente, se houver
+  const requests = document.getElementById('requests').value.trim();
+  if (requests) {
+    orderSummary += `\nObservações: ${requests}\n`;
+  }
+  
+  // Adicionar método de entrega e taxa, se aplicável
+  if (deliveryMethod === 'delivery') {
+    orderSummary += `\nTaxa de Entrega (Dragão Mensageiro): R$ 10,00\n`;
+  }
   
   orderSummary += `\nTotal: R$ ${totalPrice.toFixed(2)}`;
   
